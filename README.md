@@ -12,14 +12,14 @@
 
 Материалы:
 
- https://habr.com/ru/company/true_engineering/blog/419817/
- https://www.rabbitmq.com/ha.html
- https://habr.com/ru/company/itsumma/blog/471858/
- https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
- https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/
- https://content.pivotal.io/blog/rabbitmq-hits-one-million-messages-per-second-on-google-compute-engine
- https://www.rabbitmq.com/partitions.html
- https://github.com/nanit/kubernetes-rabbitmq-cluster
+ https://habr.com/ru/company/true_engineering/blog/419817/ <br>
+ https://www.rabbitmq.com/ha.html<br>
+ https://habr.com/ru/company/itsumma/blog/471858/<br>
+ https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/<br>
+ https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/<br>
+ https://content.pivotal.io/blog/rabbitmq-hits-one-million-messages-per-second-on-google-compute-engine<br>
+ https://www.rabbitmq.com/partitions.html<br>
+ https://github.com/nanit/kubernetes-rabbitmq-cluster<br>
 
 
 
