@@ -1,3 +1,28 @@
+# Решение на базе https://github.com/nanit/kubernetes-rabbitmq-cluster
+
+Изменения:
+Изменены параметры реплик на 8 CPU / 30 Gb RAM под нагрузку в миллионы сообщений в день. Увеличено количество реплик до 5
+
+Параметры:
+Оставлен по умолчанию режим ha-sync-mode = manual, в угоду потери части данных нежели полного простоя всех очередей в случае синхронизации. В целом необходимо смотреть на ситуацию более детально, чтобы выбирать между automatic и manual, что критичней будет, простой или потеря данных. cluster_partition_handling = ignore, т.к. принимается, что с сетью проблем не будет. 
+
+Состав стека:
+5 нод с rabbitmq в кластере. headless - сервис. Сервис rabbitmq для доступа к кластеру. Сервис rabbitmq для доступа к админской консоли.
+
+
+Материалы:
+
+https://habr.com/ru/company/true_engineering/blog/419817/
+https://www.rabbitmq.com/ha.html
+https://habr.com/ru/company/itsumma/blog/471858/
+https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/
+https://content.pivotal.io/blog/rabbitmq-hits-one-million-messages-per-second-on-google-compute-engine
+https://www.rabbitmq.com/partitions.html
+https://github.com/nanit/kubernetes-rabbitmq-cluster
+
+
+
 # kubernetes-rabbitmq-cluster
 
 A ready to deploy rabbitmq cluster to work on top of Kubernetes.
@@ -22,10 +47,10 @@ It uses [rabbitmq clusterer plugin](https://github.com/rabbitmq/rabbitmq-cluster
 |------------------------------|-----------------------|--------------------------------------------------------------------------
 | NAMESPACE                    | default               | Change it if you want to create the RabbitMQ cluster in a custom Kubernetes namespace. If the namespace does not exist in the moment of deployment, it will be created for you.          
 | DOCKER_REPOSITORY            | nanit                 | Change it if you want to build and use custom docker repository    
-| POD_MEMORY_REQUEST           | 30000Mi                | 5GB memory allocated per pod by default         
+| POD_MEMORY_REQUEST           | 30000Mi                | 30GB memory allocated per pod by default         
 | SUDO                         | sudo                  | Should docker commands be prefixed with sudo. Change to "" to omit sudo.
 | RBAC                         | FALSE                 | Should create a role/system account and role binding
-| RABBITMQ_REPLICAS            | 3                     | Number of nodes in the cluster                                           
+| RABBITMQ_REPLICAS            | 5                     | Number of nodes in the cluster                                           
 | RABBITMQ_DEFAULT_USER        | None                  | The default username to access the management console                    
 | RABBITMQ_DEFAULT_PASS        | None                  | The default password to access the management console                    
 | RABBITMQ_ERLANG_COOKIE       | None                  | Erlang secret needed for nodes communication                             
