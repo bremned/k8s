@@ -4,7 +4,7 @@
 Изменены параметры реплик на 8 CPU / 30 Gb RAM под нагрузку в миллионы сообщений в день. Увеличено количество реплик до 5
 
 Параметры:
-Оставлен по умолчанию режим ha-sync-mode = manual, в угоду потери части данных нежели полного простоя всех очередей в случае синхронизации. В целом необходимо смотреть на ситуацию более детально, чтобы выбирать между automatic и manual, что критичней будет, простой или потеря данных. cluster_partition_handling = ignore, т.к. принимается, что с сетью проблем не будет. 
+Оставлен по умолчанию режим ha-sync-mode = manual, в угоду потери части данных нежели полного простоя всех очередей в случае синхронизации. Оставлен для избыточности ha-mode = all В целом необходимо смотреть на ситуацию более детально, чтобы выбирать между automatic и manual, что критичней будет, простой или потеря данных. cluster_partition_handling = ignore, т.к. принимается, что с сетью проблем не будет. 
 
 Состав стека:
 5 нод с rabbitmq в кластере. headless - сервис. Сервис rabbitmq для доступа к кластеру. Сервис rabbitmq для доступа к админской консоли.
@@ -12,14 +12,14 @@
 
 Материалы:
 
-https://habr.com/ru/company/true_engineering/blog/419817/
-https://www.rabbitmq.com/ha.html
-https://habr.com/ru/company/itsumma/blog/471858/
-https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
-https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/
-https://content.pivotal.io/blog/rabbitmq-hits-one-million-messages-per-second-on-google-compute-engine
-https://www.rabbitmq.com/partitions.html
-https://github.com/nanit/kubernetes-rabbitmq-cluster
+ https://habr.com/ru/company/true_engineering/blog/419817/
+ https://www.rabbitmq.com/ha.html
+ https://habr.com/ru/company/itsumma/blog/471858/
+ https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+ https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/
+ https://content.pivotal.io/blog/rabbitmq-hits-one-million-messages-per-second-on-google-compute-engine
+ https://www.rabbitmq.com/partitions.html
+ https://github.com/nanit/kubernetes-rabbitmq-cluster
 
 
 
@@ -56,7 +56,7 @@ It uses [rabbitmq clusterer plugin](https://github.com/rabbitmq/rabbitmq-cluster
 | RABBITMQ_ERLANG_COOKIE       | None                  | Erlang secret needed for nodes communication                             
 | RABBITMQ_EXPOSE_MANAGEMENT   | FALSE                 | Should RMQ management console be exposed as a service              
 | RABBITMQ_MANAGEMENT_SERVICE_TYPE   | LoadBalancer    | [Kubernetes service](https://kubernetes.io/docs/concepts/services-networking/service/) type for the management console                       
-| RABBITMQ_HA_POLICY           | None                  | Set this variable to automatically set [HA policy](https://www.rabbitmq.com/ha.html) on all queues           
+| RABBITMQ_HA_POLICY           | All                  | Set this variable to automatically set [HA policy](https://www.rabbitmq.com/ha.html) on all queues           
 | RABBITMQ_LOG_LEVEL           | info                  | Log levels are set for all RabbitMQ log types: connection, mirroring, channel and federation. Valid values are: none, error, warning, info, debug 
 | RABBITMQ_ADDITIONAL_YAML     | ""                    | Inject additional arbitrary YAML into the stateful set 
 
